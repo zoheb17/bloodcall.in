@@ -305,7 +305,7 @@ export default function Dashboard() {
                       {maskPhone(d.phone)}
                     </p>
                     <a
-                      href={`tel:+91${d.phone}`}
+                      href={`tel:+91${d.userPhone}`}
                       className="flex items-center gap-1.5 bg-rose-50 dark:bg-rose-900/40 text-rose-600 dark:text-rose-300 px-4 py-2 rounded-xl text-sm font-semibold hover:bg-rose-100 dark:hover:bg-rose-900/60 transition-colors"
                     >
                       Contact
