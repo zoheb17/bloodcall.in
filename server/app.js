@@ -39,10 +39,16 @@ const port = process.env.PORT;
 //     }
 // })
 app.use("/public",publicRouter);
-app.use(middleware);
-app.use("/private",privateRouter);
+
+// Serve static files from the React build (no auth required)
 const buildPath = path.join(__dirname, "dist");
 app.use(express.static(buildPath));
+
+// Apply auth middleware only to /private routes
+app.use("/private", middleware);
+app.use("/private",privateRouter);
+
+// Catch-all route for client-side routing (must be last)
 app.get("*",(req,res)=>{
     res.sendFile(path.join(buildPath, "index.html"));
 });
