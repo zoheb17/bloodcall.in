@@ -32,6 +32,7 @@ const item = {
 };
 
 export default function Dashboard() {
+  const url = import.meta.env.VITE_URL
   const navigate = useNavigate();
   const { isDark, toggleTheme } = useTheme();
 
@@ -65,7 +66,7 @@ export default function Dashboard() {
       if (bloodGroup === "All") {
         // Default: get all donors
         const res = await axios.get(
-          "http://localhost:5000/private/getalldonors",
+          `${url}/private/getalldonors`,
           {
             headers: {
               authorization: `Bearer ${token}`,
@@ -76,7 +77,7 @@ export default function Dashboard() {
       } else {
         // Filter by blood group
         const res = await axios.post(
-          "http://localhost:5000/private/blood-request",
+          `${url}/private/blood-request`,
           { bloodGroup },
           {
             headers: {
@@ -90,7 +91,7 @@ export default function Dashboard() {
       setDonors([]);
       setError(
         err.response?.data?.msg ||
-          (group === "All" ? "No donors found." : "No donors found for this group in your city.")
+        (group === "All" ? "No donors found." : "No donors found for this group in your city.")
       );
     } finally {
       setLoading(false);
@@ -114,10 +115,10 @@ export default function Dashboard() {
   const token = localStorage.getItem("token");
 
   return (
-    <div className="min-h-screen text-slate-900 dark:text-slate-100 overflow-x-hidden bg-gradient-to-b from-[#fdfcf9] via-[#faf8f5] to-[#fef6f4] dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-300">
+    <div className="min-h-screen text-slate-900 dark:text-slate-100 overflow-x-hidden bg-linear-to-b from-[#fdfcf9] via-[#faf8f5] to-[#fef6f4] dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-300">
       {/* Decorative background */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-[28rem] h-[28rem] bg-rose-200/25 dark:bg-rose-900/20 rounded-full blur-3xl" />
+        <div className="absolute -top-40 -right-40 w-md h-112 bg-rose-200/25 dark:bg-rose-900/20 rounded-full blur-3xl" />
         <div className="absolute top-1/2 -left-32 w-80 h-80 bg-amber-100/30 dark:bg-amber-900/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/3 w-72 h-72 bg-rose-100/40 dark:bg-rose-900/15 rounded-full blur-2xl" />
       </div>
@@ -131,10 +132,10 @@ export default function Dashboard() {
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-500 to-red-600 flex items-center justify-center shadow-lg shadow-rose-500/30">
+            <div className="w-10 h-10 rounded-xl bg-linear-to-br from-rose-500 to-red-600 flex items-center justify-center shadow-lg shadow-rose-500/30">
               <Heart className="w-5 h-5 text-white fill-white" strokeWidth={2.5} />
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-rose-600 to-red-600 bg-clip-text text-transparent">
+            <span className="text-xl font-bold bg-linear-to-r from-rose-600 to-red-600 bg-clip-text text-transparent">
               LifeSaver
             </span>
           </div>
@@ -153,7 +154,7 @@ export default function Dashboard() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => navigate("/donor-register")}
-              className="group flex items-center gap-2 bg-gradient-to-r from-rose-600 to-red-600 text-white px-6 py-2.5 rounded-full font-semibold shadow-lg shadow-rose-500/30 hover:shadow-xl hover:shadow-rose-500/40 transition-all duration-300"
+              className="group flex items-center gap-2 bg-linear-to-r from-rose-600 to-red-600 text-white px-6 py-2.5 rounded-full font-semibold shadow-lg shadow-rose-500/30 hover:shadow-xl hover:shadow-rose-500/40 transition-all duration-300"
             >
               Donate Now
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -200,7 +201,7 @@ export default function Dashboard() {
           transition={{ duration: 0.5, delay: 0.15 }}
           className="relative bg-white dark:bg-slate-800/80 backdrop-blur-xl rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-slate-950/50 border border-slate-100 dark:border-slate-700/50 p-4 flex flex-col sm:flex-row gap-4 overflow-hidden"
         >
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-rose-500 via-red-500 to-rose-600" />
+          <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-rose-500 via-red-500 to-rose-600" />
           <div className="flex-1 relative">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
             <input
@@ -243,7 +244,7 @@ export default function Dashboard() {
             animate={{ opacity: 1, y: 0 }}
             className="flex items-center gap-3 px-6 py-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800/50 rounded-2xl text-amber-800 dark:text-amber-200"
           >
-            <AlertCircle className="w-5 h-5 flex-shrink-0" />
+            <AlertCircle className="w-5 h-5 shrink-0" />
             <p>{error}</p>
           </motion.div>
         )}
@@ -279,8 +280,8 @@ export default function Dashboard() {
                 whileHover={{ y: -6, transition: { duration: 0.2 } }}
                 className="group relative bg-white dark:bg-slate-800/80 backdrop-blur-xl rounded-2xl p-6 shadow-lg shadow-slate-200/40 dark:shadow-slate-950/50 border border-slate-100 dark:border-slate-700/50 hover:shadow-xl hover:shadow-rose-100/50 dark:hover:shadow-rose-900/20 hover:border-rose-100 dark:hover:border-rose-900/50 transition-all duration-300 overflow-hidden"
               >
-                <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-rose-400/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="absolute inset-0 bg-gradient-to-br from-rose-50/0 to-rose-50/0 dark:from-rose-900/0 dark:to-rose-900/0 group-hover:from-rose-50/50 dark:group-hover:from-rose-900/20 group-hover:to-transparent transition-all duration-300 pointer-events-none" />
+                <div className="absolute top-0 left-0 right-0 h-0.5 bg-linear-to-r from-transparent via-rose-400/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 bg-linear-to-br from-rose-50/0 to-rose-50/0 dark:from-rose-900/0 dark:to-rose-900/0 group-hover:from-rose-50/50 dark:group-hover:from-rose-900/20 group-hover:to-transparent transition-all duration-300 pointer-events-none" />
 
                 <div className="relative">
                   <div className="flex items-start justify-between mb-4">
@@ -293,7 +294,7 @@ export default function Dashboard() {
                         {d.city || "Unknown city"}
                       </p>
                     </div>
-                    <span className="inline-flex items-center justify-center min-w-[3rem] h-9 px-3 bg-gradient-to-r from-rose-600 to-red-600 text-white text-sm font-bold rounded-xl shadow-md shadow-rose-500/30 group-hover:shadow-lg group-hover:shadow-rose-500/40 transition-shadow">
+                    <span className="inline-flex items-center justify-center min-w-12 h-9 px-3 bg-linear-to-r from-rose-600 to-red-600 text-white text-sm font-bold rounded-xl shadow-md shadow-rose-500/30 group-hover:shadow-lg group-hover:shadow-rose-500/40 transition-shadow">
                       {d.bloodGroup}
                     </span>
                   </div>

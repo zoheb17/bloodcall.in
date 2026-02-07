@@ -17,6 +17,8 @@ import {
 import { useTheme } from "../context/ThemeContext";
 
 export default function DonorRegister() {
+  const url = import.meta.env.VITE_URL
+
   const navigate = useNavigate();
   const { isDark, toggleTheme } = useTheme();
 
@@ -66,7 +68,7 @@ export default function DonorRegister() {
 
     try {
       await axios.post(
-        "http://localhost:5000/private/donor-form",
+        `${url}/private/donor-form`,
         form,
         {
           headers: {

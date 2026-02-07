@@ -3,6 +3,8 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function VerifyOtp() {
+  const url = import.meta.env.VITE_URL
+
   const navigate = useNavigate();
   const { state } = useLocation();
 
@@ -16,7 +18,7 @@ export default function VerifyOtp() {
       setLoading(true);
         console.log(`function running`)
       const res = await axios.post(
-        "http://localhost:5000/public/verify-phone",
+        `${url}/public/verify-phone`,
         {
           phoneotp: otp, // ✅ matches backend
         }

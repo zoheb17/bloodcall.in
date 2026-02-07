@@ -22,6 +22,8 @@ import {
 import { useTheme } from "../context/ThemeContext";
 
 export default function UserRegister() {
+  const url = import.meta.env.VITE_URL
+
   const navigate = useNavigate();
   const { isDark, toggleTheme } = useTheme();
 
@@ -46,7 +48,7 @@ export default function UserRegister() {
     setLoading(true);
 
     try {
-      await axios.post("http://localhost:5000/public/register", form);
+      await axios.post(`${url}/public/register`, form);
 
       navigate("/verify-email", { state: { email: form.email } });
     } catch (err) {

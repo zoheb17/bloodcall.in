@@ -28,6 +28,7 @@ const item = {
 };
 
 export default function Home() {
+
   const navigate = useNavigate();
   const { isDark, toggleTheme } = useTheme();
   const [donors] = useState(mock);

@@ -19,6 +19,8 @@ import { useTheme } from "../context/ThemeContext";
 import axios from "axios";
 
 export default function Login() {
+  const url = import.meta.env.VITE_URL
+
   const navigate = useNavigate();
   const { isDark, toggleTheme } = useTheme();
 
@@ -35,7 +37,7 @@ export default function Login() {
       setError("");
 
       const res = await axios.post(
-        "http://localhost:5000/public/login",
+        `${url}/public/login`,
         { email, password }
       );
 

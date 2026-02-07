@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from "react-router";
 import axios from "axios";
 
 export default function VerifyEmail() {
+  const url = import.meta.env.VITE_URL
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -31,7 +33,7 @@ export default function VerifyEmail() {
         setStatus("verifying");
         setMessage("Verifying your email, please wait...");
 
-        await axios.post("http://localhost:5000/public/verify-email", {
+        await axios.post(`${url}/public/verify-email`, {
           emailotp: token,
         });
 
