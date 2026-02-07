@@ -18,9 +18,9 @@ import privateRouter from "./controllers/private/private.js"
 const app = express()
 app.use(express.json());
 let corsObject = {
-    origin : ["http://localhost:5173"],
-    methods : ["GET", "POST", "PUT", "DELETE"],
-    // allowedHeaders : ["authorization"]
+    origin : ["http://localhost:5173", "http://localhost:5174"],
+    methods : ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders : ["Content-Type", "Authorization"]
 }
 app.use(cors(corsObject))
 const port = process.env.PORT;

@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+}
+
 .glass {
   background: rgba(0,0,0,.35);
   backdrop-filter: blur(16px);
