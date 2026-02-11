@@ -130,7 +130,7 @@ export default function Dashboard() {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200/60 dark:border-slate-700/60 shadow-sm shadow-slate-200/20 dark:shadow-slate-950/50"
       >
-        <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+        <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3 px-6 py-4">
           <div className="flex items-center gap-2">
             <div className="w-10 h-10 rounded-xl bg-linear-to-br from-rose-500 to-red-600 flex items-center justify-center shadow-lg shadow-rose-500/30">
               <Heart className="w-5 h-5 text-white fill-white" strokeWidth={2.5} />
@@ -140,7 +140,7 @@ export default function Dashboard() {
             </span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 w-full sm:w-auto justify-end">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

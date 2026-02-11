@@ -44,19 +44,24 @@ export default function UserRegister() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+  e.preventDefault();
+  setLoading(true);
 
-    try {
-      await axios.post(`${url}/public/register`, form);
+  try {
+    setError("");
 
-      navigate("/verify-email", { state: { email: form.email } });
-    } catch (err) {
-      setError(err.response?.data?.msg || err.response?.data?.message || "Error");
-    } finally {
-      setLoading(false);
-    }
-  };
+    const res = await axios.post(`${url}/public/register`, form);
+
+    localStorage.setItem("token", res.data.token);
+
+    navigate("/dashboard");
+  } catch (err) {
+    setError(err.response?.data?.msg || err.response?.data?.message || "Error");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="min-h-screen flex text-slate-900 dark:text-slate-100 bg-gradient-to-b from-[#fdfcf9] via-[#faf8f5] to-[#fef6f4] dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-300">
