@@ -130,17 +130,17 @@ export default function Dashboard() {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200/60 dark:border-slate-700/60 shadow-sm shadow-slate-200/20 dark:shadow-slate-950/50"
       >
-        <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3 px-6 py-4">
+        <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3 px-4 sm:px-6 py-4">
           <div className="flex items-center gap-2">
             <div className="w-10 h-10 rounded-xl bg-linear-to-br from-rose-500 to-red-600 flex items-center justify-center shadow-lg shadow-rose-500/30">
               <Heart className="w-5 h-5 text-white fill-white" strokeWidth={2.5} />
             </div>
-            <span className="text-xl font-bold bg-linear-to-r from-rose-600 to-red-600 bg-clip-text text-transparent">
+            <span className="text-lg sm:text-xl font-bold bg-linear-to-r from-rose-600 to-red-600 bg-clip-text text-transparent">
               LifeSaver
             </span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3 w-full sm:w-auto justify-end">
+          <div className="flex flex-wrap items-center gap-2 justify-end">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -154,9 +154,10 @@ export default function Dashboard() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => navigate("/donor-register")}
-              className="group flex items-center gap-2 bg-linear-to-r from-rose-600 to-red-600 text-white px-6 py-2.5 rounded-full font-semibold shadow-lg shadow-rose-500/30 hover:shadow-xl hover:shadow-rose-500/40 transition-all duration-300"
+              className="group flex items-center gap-1.5 sm:gap-2 bg-linear-to-r from-rose-600 to-red-600 text-white px-4 sm:px-6 py-2.5 rounded-full text-sm sm:text-base font-semibold shadow-lg shadow-rose-500/30 hover:shadow-xl hover:shadow-rose-500/40 transition-all duration-300"
             >
-              Donate Now
+              <span className="hidden xs:inline">Donate Now</span>
+              <span className="inline xs:hidden">Donate</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </motion.button>
             {token && (
@@ -164,10 +165,10 @@ export default function Dashboard() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={handleLogout}
-                className="flex items-center gap-2 border-2 border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-300 px-5 py-2.5 rounded-full font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                className="flex items-center gap-1.5 sm:gap-2 border-2 border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-300 px-3 sm:px-5 py-2.5 rounded-full text-sm sm:text-base font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors whitespace-nowrap"
               >
                 <LogOut className="w-4 h-4" />
-                Logout
+                <span>Logout</span>
               </motion.button>
             )}
           </div>
