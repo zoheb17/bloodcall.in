@@ -52,9 +52,11 @@ export default function UserRegister() {
 
     const res = await axios.post(`${url}/public/register`, form);
 
-    localStorage.setItem("token", res.data.token);
+    navigate("/verify-email", {
+  state: { email: form.email }
+});
 
-    navigate("/dashboard");
+  
   } catch (err) {
     setError(err.response?.data?.msg || err.response?.data?.message || "Error");
   } finally {
